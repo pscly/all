@@ -4,12 +4,24 @@
 # 创建日期: 
 # version: 
 
-from funcs import *
+from funcs_file import *
+import time, os
+
+def fun_func(func_id, funcs_):
+    if func_id == 'q':
+        return False
+    if func_id not in funcs_:
+        print('你输入有误')
+        return False
+
+    funcs_[in_1][0]()
+    return True
+    
 
 def runs():
     pass
 
-dakai = {
+funcs = {
     '1': [func1, '方法1'],
     '2': [func2, '方法2'],
     '3': [func3, '方法3'],
@@ -19,15 +31,28 @@ dakai = {
 }
 
 def dayin(stat=''):
-    print()
-    for i in dakai:
-        print(i,' \t'.expandtabs(6),dakai[i][1])
+    print("--------------------------------------------")
+    for i in funcs:
+        print(i,' \t'.expandtabs(6),funcs[i][1])
 
 
 
 if __name__ == "__main__":
-    dayin()
-    in_1 = input('请输入功能>>>:')
+    while 1:
+        print('\n')
+        dayin()
+        in_1 = input("输入模式>>:").strip().lower()
+        in_1_list = in_1.split(' ')
+        if not len(in_1_list) == 1:
+            # TODO 多输入
+            for i in in_1_list:
+                if not fun_func(i, funcs):
+                    
+                
+
+        else:
+            fun_func(in_1, funcs)
+
 
 
 
