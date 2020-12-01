@@ -44,7 +44,6 @@ if __name__ == "__main__":
         in_1 = input("输入模式>>:").strip().lower()
         in_1_list = in_1.split(' ')
         if not len(in_1_list) == 1:
-            # TODO 多输入
             for i in in_1_list:
                 if not fun_func(i, funcs):
                     

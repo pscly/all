@@ -4,14 +4,23 @@
 # 创建日期: 
 # version: 
 
+import os
+import time
+
 def huanyuan():
-    pass
+    now_time = time.strftime("%y-%m-%d--%S")  # 时间是 年-月-日--秒
+    os.system(f'sudo cp /etc/apt/sources.list /etc/apt/sources.{now_time}.list')
+    os.system('sudo cp ./lists/aliyun.list /etc/apt/sources.list')
+    os.system('sudo apt-get update')
+    
 
 def install_git():
-    pass
+    os.system("sudo apt install git")
+    os.system("echo '\n\n\n\n\n\n\ngit安装完成\n\n\n\n\n\n\n'")
 
 def install_zsh():
-    pass
+    os.system("sudo apt install zsh")
+
 
 def install_plugins():
     pass
