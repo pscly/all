@@ -8,6 +8,9 @@ from funcs_file import *
 import time, os
 
 def fun_func(func_id, funcs_):
+    '''
+    如果返回的是True，那就代表执行成功了
+    '''
     if func_id == 'q':
         return False
     if func_id not in funcs_:
@@ -44,14 +47,14 @@ if __name__ == "__main__":
         in_1 = input("输入模式>>:").strip().lower()
         in_1_list = in_1.split(' ')
         if not len(in_1_list) == 1:
-            # TODO 多输入
             for i in in_1_list:
                 if not fun_func(i, funcs):
-                    
-                
+                    pass
 
-        else:
+        else :
             fun_func(in_1, funcs)
+
+            
 
 
 
