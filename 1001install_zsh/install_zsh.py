@@ -21,6 +21,15 @@ def install_git():
 def install_zsh():
     os.system("sudo apt install zsh")
 
+def install_oh_my_zsh():
+    # https://github.com/pscly/all/blob/master/1001install_zsh/install.sh
+    # https://gitee.com/pscly/all/raw/master/1001install_zsh/install.sh
+    # https://tc.pscly.cn/install.sh
+    # 
+    url1 = 'https://tc.pscly.cn/install.sh'
+    # os.system(f'sh -c "$(curl -fsSL {url1})"')
+    os.system(f'sh -c "$(wget -qO- {url1})"')
+    
 
 def install_plugins():
     pass
