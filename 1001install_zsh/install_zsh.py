@@ -27,23 +27,25 @@ def install_oh_my_zsh():
     # https://tc.pscly.cn/install.sh
     # 
     url1 = 'https://tc.pscly.cn/install.sh'
-    # os.system(f'sh -c "$(curl -fsSL {url1})"')
-    os.system(f'sh -c "$(wget -qO- {url1})"')
+    os.system(f'sh -c "$(curl -fsSL {url1})"')
+    # os.system(f'sh -c "$(wget -qO- {url1})"')
+    time.sleep(5)
     
 
 def install_plugins():
-    pass
-
-def runs():
-    pass
+    os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
+    # os.system('plugins=(zsh-autosuggestions)')
+    time.sleep(5)
+    print('请自己往plugins中添加  zsh-autosuggestions ')
+    print('vim ~/.zshrc')
+    
 
 dakai = {
     '1': [huanyuan, '换源'],
     '2': [install_git, '安装git'],
     '3': [install_zsh, '安装zsh'],
     '4': [install_plugins, '安装zsh插件'],
-    '5': [runs, '输入一堆，然后按顺序执行'],
-    '6': [exit, '退出'],
+    '5': [exit, '退出'],
 }
 
 def dayin():
