@@ -36,15 +36,15 @@ def install_plugins():
     os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
     # os.system('plugins=(zsh-autosuggestions)')
     time.sleep(5)
-    print('请自己往plugins中添加  zsh-autosuggestions ')
-    print('vim ~/.zshrc')
+    print('请自己往 ~/.plugins 中添加  zsh-autosuggestions ')
+    print('使用 vim ~/.zshrc')
     
 
 dakai = {
     '1': [huanyuan, '换源'],
     '2': [install_git, '安装git'],
     '3': [install_zsh, '安装zsh'],
-    '4': [install_plugins, '安装zsh插件'],
+    '4': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
     '5': [exit, '退出'],
 }
 
