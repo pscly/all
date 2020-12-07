@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/powered by-pscly-<COLOR>)
 
-这个是 通过时间来判定使用时间， 或者是使用临时激活码来使用
+这个是 通过当前时间来判定使用时间， 或者是使用临时验证码来使用
 
 
 

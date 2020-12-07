@@ -2,8 +2,6 @@
 # coding: utf-8
 # 作者:Pscly
 
-from funcs_file import *  # 引入方法
-
 
 def fun_func(func_id, funcs_):
     if func_id == 'q':
@@ -41,6 +39,7 @@ def runs(funcs, out_1='请输入>>:'):
 
 
 if __name__ == "__main__":
+    from funcs_file import *  # 引入方法
     funcs = {
         #    函数名    解释
         '1': [func1, '方法1'],

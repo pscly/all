@@ -36,7 +36,7 @@ def install_plugins():
     os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
     # os.system('plugins=(zsh-autosuggestions)')
     time.sleep(5)
-    print('请自己往 ~/.plugins 中添加  zsh-autosuggestions ')
+    print('请自己往 ~/.zshrc  plugins 中添加  zsh-autosuggestions ')
     print('使用 vim ~/.zshrc')
     
 

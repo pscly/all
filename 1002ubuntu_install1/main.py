@@ -41,10 +41,16 @@ def install_ssr1():
     ssr2.install_ssr()
     
 
-def install_pkgs():
+def install_pkgs(debs=None):
     '''
     安装离线包 chrome 和 code
     '''
+
+    # HACK 如果要修改包的东西
+    if debs:
+        for i in debs:
+            os.system(f"sudo dpkg -i ./pkgs/{i}" )
+        return True
 
     os.system("sudo dpkg -i ./pkgs/code_1.51.1-1605051630_amd64.deb")
     os.system("sudo dpkg -i ./pkgs/google-chrome-stable_current_amd64.deb ")
@@ -59,12 +65,6 @@ def install_lantern():
 
 
 
-def all_1():
-    """
-    全部功能都走一遍，按照顺序
-    """
-    pass
-
 
 funcs = {
     '1': [set_network, set_network.__doc__.strip()],
@@ -74,7 +74,6 @@ funcs = {
     '5': [install_pkgs, install_pkgs.__doc__.strip()],
     # '6': [update_apt, update_apt.__doc__.strip()],
     # '6': [install_lantern, install_lantern.__doc__.strip()],
-    '7': [all_1, all_1.__doc__.strip()]
 }
 
 def all_1():
