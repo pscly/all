@@ -7,9 +7,6 @@ import os, shutil
 
 from os import path
 
-
-
-
 '''
 ！ 居然完成了
 我是真的真的真的天秀！！！！
@@ -19,14 +16,13 @@ from os import path
 '''
 print('这个是我用来筛选壁纸的工具:  qq:550191537')
 
-
 # FILE_PATH = r'C:\Users\pscly\Desktop\tmp2\cs1'
 # TO_PATH = r'C:\Users\pscly\Desktop\tmp2\cs2'
 # FILE_PATH = r'.'
 # FILE_PATH = r'D:\下载\百度云\壁纸分享'
 # pd = 0      # 用来进行判断进行了几次的目录
 
-dir_deep = 2    # 这个用来控制文件夹的深度
+dir_deep = 2  # 这个用来控制文件夹的深度
 path_name = ''  # 这个表示当前文件夹的名字
 
 
@@ -66,10 +62,10 @@ def save_file(from_path, save_path, save_file_name):
     :param save_file_name: 文件名
     :return:
     '''
-    if not os.path.isdir(save_path):        # 查看上一级文件夹是否存在
+    if not os.path.isdir(save_path):  # 查看上一级文件夹是否存在
         os.makedirs(save_path)
-
-    shutil.copy2(from_path, os.path.join(save_path, save_file_name))        # 复制文件
+    
+    shutil.copy2(from_path, os.path.join(save_path, save_file_name))  # 复制文件
 
 
 def copy_file(from_file_path, to_file_path, file_name, path_name, dir_name):
@@ -90,39 +86,42 @@ def copy_file(from_file_path, to_file_path, file_name, path_name, dir_name):
 
     # save_file_name = os.path.join(path_name, dir_name, file_name)        # 这个是文件的名字
     save_file_name = dir_name + file_name  # 这个是文件的名字
-    save_path_1 = os.path.join(to_file_path, '分类', path_name)     # 这个是保存的文件路径
-    save_path_2 = os.path.join(to_file_path, '汇总')     # 这个是保存的文件路径
+    save_path_1 = os.path.join(to_file_path, '分类', path_name)  # 这个是保存的文件路径1
+    save_path_2 = os.path.join(to_file_path, '汇总')  # 这个是保存的文件路径2
 
     # 让专门保存(复制)的去保存(复制)
-    save_file(from_file_path, save_path_1, save_file_name)      # 保存到分类那边去
-    save_file(from_file_path, save_path_2, path_name+save_file_name)      # 保存到汇总那边去
+    save_file(from_file_path, save_path_1, save_file_name)  # 保存到分类那边去
+    save_file(from_file_path, save_path_2, path_name + save_file_name)  # 保存到汇总那边去
 
 
 root_dir_name = ''
 
 
 def for_all(it, file_info=None, type_1=None, pd=0):
-    # is_copy : 进行判断是否进行拷贝(移动)文件
+    # it : 这里的it是应该是it2
+    # type_1 : 判断是不是特殊模式
     # pd 用来判断进入了几次目录
     global dir_deep, path_name
 
     for all in it:
-        print(f'我是{all.name}，我位于{all.path}, 现在pd是{pd}, 我老大是{root_dir_name}, ')
+        print(f'我是{all.name}，我位于{all.path}, 现在pd是{pd}, 我上面是{root_dir_name}, ')
         if all.is_dir():
             pd += 1
 
-            if pd == dir_deep:      # 如果目录深度到了
-                it2 = files_1(all.path)
+            if pd == dir_deep:  # 如果目录深度到了
+                it3 = files_1(all.path)
                 file_info_1 = {'type_1': all.name, 'dir_name': root_dir_name, 'jiekou': all}
-                for_all(it2, file_info_1, type_1=True, pd=pd)  # 进入特殊模式
+                for_all(it3, file_info_1, type_1=True, pd=pd)  # 进入特殊模式
 
                 pd -= 1
                 continue
 
-            it2 = files_1(all.path)
-            for_all(it2, pd=pd)
+            # 目录深度还没到的情况
+            it3 = files_1(all.path)
+            for_all(it3, pd=pd)
 
-        if all.is_file() and pd > dir_deep - 1:
+        #TODO 如果要限制深度
+        if all.is_file() and (pd == dir_deep):
             print('这个是文件%s' % all.name)
             if type_1:
                 copy_file(all.path, TO_PATH, all.name, file_info['type_1'], file_info['dir_name'])
@@ -134,15 +133,16 @@ def run(it):
     # pd 用来判断当前进入了几次目录
     global dir_deep, path_name, root_dir_name
     for all in it:
-        pd = 0    # pd 用来判断当前进入了几次目录
-        root_dir_name = all.name
+        pd = 0  # pd 用来判断当前进入了几次目录
+
+        root_dir_name = all.name  # 如果他是一个文件， 就会变成文件名， 但是如果是文件，就不会走下面的东西了
         if all.is_dir():
             pd += 1
 
             if pd == dir_deep:
                 it2 = files_1(all.path)
                 file_info_1 = {'type_1': all.name, 'dir_name': root_dir_name, 'jiekou': all}
-                for_all(it2, file_info_1, type_1=True, pd=pd)  # 进入特殊模式
+                for_all(it2, file_info_1, pd=pd)
 
                 pd -= 1
                 continue
@@ -152,7 +152,7 @@ def run(it):
 
 
 if __name__ == '__main__':
-    dir_deep = 2   # 控制文件夹的深度(根目录算是0)
+    dir_deep = 2  # 控制文件夹的深度(根目录算是0)
 
     FILE_PATH = input('请输入待处理的文件夹:').strip(' ')
     TO_PATH = input('请输入要放到的目的地>>:').strip(' ')
@@ -161,9 +161,3 @@ if __name__ == '__main__':
     run(it1)
 
     input('完毕，回车键退出')
-
-
-
-
-
-
