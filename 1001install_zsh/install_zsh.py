@@ -52,6 +52,9 @@ def dayin():
     for i in dakai:
         print(i,' \t'.expandtabs(6),dakai[i][1])
 
-
+if __name__ == "__main__":
+    import start_funcs as sf
+    while 1:
+        sf.runs(dakai)
 
 
