@@ -8,6 +8,8 @@ import os, shutil
 from os import path
 
 
+
+
 '''
 ！ 居然完成了
 我是真的真的真的天秀！！！！
@@ -16,25 +18,16 @@ from os import path
 00点12分  BUG修复完毕
 '''
 print('这个是我用来筛选壁纸的工具:  qq:550191537')
-FILE_PATH = input('请输入待处理的文件夹:')
-TO_PATH = input('请输入要放到的目的地>>:')
+
 
 # FILE_PATH = r'C:\Users\pscly\Desktop\tmp2\cs1'
 # TO_PATH = r'C:\Users\pscly\Desktop\tmp2\cs2'
 # FILE_PATH = r'.'
 # FILE_PATH = r'D:\下载\百度云\壁纸分享'
 # pd = 0      # 用来进行判断进行了几次的目录
+
 dir_deep = 2    # 这个用来控制文件夹的深度
 path_name = ''  # 这个表示当前文件夹的名字
-
-# # 方法1
-# for root, dirs, files in os.walk(FILE_PATH):
-#     print('----------------------------------')
-#     print(root)     # 当前的相对目录
-#     print(dirs)     # 这个目录下有那些文件夹
-#     print(files)    # 这个目录下有哪些文件
-#     if root == 'he':
-#         print(0000)
 
 
 # 方法2
@@ -46,7 +39,6 @@ def files_1(PATH_1):
     it1 = os.scandir(PATH_1)
     return it1
 
-it1 = files_1(FILE_PATH)
 
 def my_1(s1, d1):
     '''
@@ -106,8 +98,8 @@ def copy_file(from_file_path, to_file_path, file_name, path_name, dir_name):
     save_file(from_file_path, save_path_2, path_name+save_file_name)      # 保存到汇总那边去
 
 
-
 root_dir_name = ''
+
 
 def for_all(it, file_info=None, type_1=None, pd=0):
     # is_copy : 进行判断是否进行拷贝(移动)文件
@@ -136,12 +128,13 @@ def for_all(it, file_info=None, type_1=None, pd=0):
                 copy_file(all.path, TO_PATH, all.name, file_info['type_1'], file_info['dir_name'])
                 # 文件目录(完整)， 目标文件目录(大致位置)， 文件名， 文件类别， 文件期数
 
+
 def run(it):
     # is_copy : 进行判断是否进行拷贝(移动)文件
-    # pd 用来判断进入了几次目录
+    # pd 用来判断当前进入了几次目录
     global dir_deep, path_name, root_dir_name
     for all in it:
-        pd = 0    # pd 用来判断进入了几次目录
+        pd = 0    # pd 用来判断当前进入了几次目录
         root_dir_name = all.name
         if all.is_dir():
             pd += 1
@@ -158,63 +151,14 @@ def run(it):
             for_all(it2, pd=pd)
 
 
-# def for_all(it, file_info=None, type_1=None, pd=0, *args, **kwargs):
-#     # is_copy : 进行判断是否进行拷贝(移动)文件
-#     # pd 用来判断进入了几次目录
-#     global dir_deep, path_name, root_dir_name
-#
-#
-#     for all in it:
-#         print(f'我是{all.name}，我位于{all.path}, 现在pd是{pd}')
-#         if all.is_dir():
-#             if pd == 3:
-#                 pd = 0
-#             pd += 1
-#             print('这个是文件夹', pd, all.name, '--', all.path)
-#
-#             if pd == dir_deep-1:
-#                 print('1111文件夹', pd, all.name, '--', all.path)
-#                 root_dir_name = all.name     # 这个指的是几期几期，
-#                 it2 = files_1(all.path)
-#                 for_all(it2, pd=pd)
-#                 continue
-#             if pd == dir_deep:
-#                 print('2222文件夹', pd, all.name, '--', all.path)
-#                 # 当目录进入到第二层(手机, 4k)
-#                 # 保留当前目录的名字, 方便之后进行分类存放
-#                 path_name_now = all.name    # 这个指的是类别(手机, 4k)
-#                 dir_path = all.path    # 这个指的是详细位置
-#
-#                 it2 = files_1(all.path)
-#                 file_info_1 = {'type_1': all.name, 'dir_name': root_dir_name, 'jiekou': all}
-#                 for_all(it2, file_info_1, type_1=True, pd=pd)  # 进入特殊模式
-#
-#                 pd -= 1
-#                 continue
-#                 # file_info = {'from_dir_path': all.path, 'type_1': all.name, 'jiekou': all}
-#                 # for_all(it2, file_info)  # 进入特殊模式
-#
-#                 # pd = 0
-#
-#
-#             it2 = files_1(all.path)
-#             for_all(it2, pd=pd)
-#
-#
-#         if all.is_file() and pd > dir_deep-1:
-#             print('这个是文件%s' %all.name)
-#
-#             if type_1:
-#
-#                 file_info_2 = {'from_dir_path': all.path, 'type_1': all.name, 'jiekou': all}
-#                 copy_file(all.path, TO_PATH, all.name, file_info['type_1'], file_info['dir_name'])
-#                 # 文件目录(完整)， 目标文件目录(大致位置)， 文件名， 文件类别， 文件期数
-
-
 if __name__ == '__main__':
+    dir_deep = 2   # 控制文件夹的深度(根目录算是0)
+
+    FILE_PATH = input('请输入待处理的文件夹:').strip(' ')
+    TO_PATH = input('请输入要放到的目的地>>:').strip(' ')
+    it1 = files_1(FILE_PATH)
+
     run(it1)
-
-
 
     input('完毕，回车键退出')
 
