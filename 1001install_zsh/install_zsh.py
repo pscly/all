@@ -20,6 +20,7 @@ def install_git():
 
 def install_zsh():
     os.system("sudo apt install zsh")
+    os.system('chsh -s $(which zsh)')
 
 def install_oh_my_zsh():
     # https://github.com/pscly/all/blob/master/1001install_zsh/install.sh
@@ -30,12 +31,14 @@ def install_oh_my_zsh():
     os.system(f'sh -c "$(curl -fsSL {url1})"')
     # os.system(f'sh -c "$(wget -qO- {url1})"')
     time.sleep(5)
+    os.system('chsh -s $(which zsh)')
     
 
 def install_plugins():
     os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
     # os.system('plugins=(zsh-autosuggestions)')
     time.sleep(5)
+    os.system('chsh -s $(which zsh)')
     print('请自己往 ~/.zshrc  plugins 中添加  zsh-autosuggestions ')
     print('使用 vim ~/.zshrc')
     
