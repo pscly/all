@@ -33,6 +33,9 @@ def install_oh_my_zsh():
     time.sleep(5)
     os.system('chsh -s $(which zsh)')
     
+def install_fish():
+    os.system('sudo apt install fish')
+    os.system('chsh -s $(which fish)')
 
 def install_plugins():
     os.system('git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions')
@@ -47,6 +50,7 @@ dakai = {
     '1': [huanyuan, '换源'],
     '2': [install_git, '安装git'],
     '3': [install_zsh, '安装zsh'],
+    '3': [install_fish, '安装fish'],
     '4': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
     '5': [exit, '退出'],
 }
