@@ -49,10 +49,10 @@ def install_plugins():
 dakai = {
     '1': [huanyuan, '换源'],
     '2': [install_git, '安装git'],
-    '3': [install_zsh, '安装zsh'],
-    '3': [install_fish, '安装fish'],
-    '4': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
-    '5': [exit, '退出'],
+    '3': [install_zsh, '安装zsh'],  
+    '4': [install_fish, '安装fish'],
+    '5': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
+    '6': [exit, '退出'],
 }
 
 def dayin():
