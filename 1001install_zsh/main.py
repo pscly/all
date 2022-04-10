@@ -47,6 +47,14 @@ def install_plugins():
     print('请自己往 ~/.zshrc  plugins 中添加  zsh-autosuggestions,zsh-syntax-highlighting ')
     print('使用 vim ~/.zshrc')
     
+def install_zsh_i():
+    in1 =input("使用国内源输入1，国外源输入2\n:").strip
+    install_url = ''
+    if in1 == '1':
+        install_url = 'https://gitee.com/mo2/zsh/raw/master/zsh.sh'
+    else:
+        install_url = 'git.io/zsh.sh'
+    os.system(f'bash -c "$(wget -qO- {install_url})"')
 
 dakai = {
     '1': [huanyuan, '换源'],
@@ -54,7 +62,8 @@ dakai = {
     '3': [install_zsh, '安装zsh'],  
     '4': [install_fish, '安装fish'],
     '5': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
-    '6': [exit, '退出'],
+    '6': [install_zsh_i, '安装zsh插件(zsh-i),相当于是zsh整合包'],
+    'q': [exit, '退出'],
 }
 
 def dayin():
