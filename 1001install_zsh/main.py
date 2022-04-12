@@ -92,7 +92,7 @@ dakai = {
     '5': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
     '6': [install_zsh_i, '安装zsh插件(zsh-i),相当于是zsh整合包'],
     '7': [install_nvim, '安装nvim 和一堆插件'],
-    '7': [install_vim2, '安装nvim 和一堆插件'],
+    '8': [install_vim2, '安装vim2 和一堆插件'],
     'q': [exit, '退出'],
 }
 
