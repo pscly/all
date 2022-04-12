@@ -81,6 +81,8 @@ def install_nvim():
     os.system(f'cp {os.path.join(os.path.dirname(os.path.abspath(__file__)), "init.vim")} {vimrc_path}')
     os.system('nvim +PlugInstall +qall')
 
+def install_vim2():
+    os.system("wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x")
 
 dakai = {
     '1': [huanyuan, '换源'],
@@ -90,6 +92,7 @@ dakai = {
     '5': [install_plugins, '安装zsh插件(就一个小插件， 不如不装)'],
     '6': [install_zsh_i, '安装zsh插件(zsh-i),相当于是zsh整合包'],
     '7': [install_nvim, '安装nvim 和一堆插件'],
+    '7': [install_vim2, '安装nvim 和一堆插件'],
     'q': [exit, '退出'],
 }
 
