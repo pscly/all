@@ -29,9 +29,11 @@ def install_oh_my_zsh():
     # https://github.com/pscly/all/blob/master/1001install_zsh/install.sh
     # https://gitee.com/pscly/all/raw/master/1001install_zsh/install.sh
     # https://tc.pscly.cn/install.sh
+    # https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     # 
-    url1 = 'https://tc.pscly.cn/install.sh'
-    os.system(f'sh -c "$(curl -fsSL {url1})"')
+    # url1 = 'https://tc.pscly.cn/install.sh'
+    # os.system(f'sh -c "$(curl -fsSL {url1})"')
+    os.system(f'sh -c {os.path.join(os.path.dirname(os.path.abspath(__file__)),"install.sh")}')
     # os.system(f'sh -c "$(wget -qO- {url1})"')
     time.sleep(5)
     os.system('chsh -s $(which zsh)')
@@ -66,11 +68,17 @@ def install_nvim():
     os.system("""sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'""")
 
-    # 在用户目录下创建.config/nvim 目录
-    os.system('mkdir -p ~/.config/nvim')
-    
-    os.system(f'cp {os.path.join(os.path.dirname(os.path.abspath(__file__)), "init.vim")} ~/.config/nvim/init.vim')
-
+    # 获取用户系统类型(win/linux)
+    system = os.popen('uname -s').read().strip()
+    print('---->',system)
+    if system == 'Linux':
+        # 在用户目录下创建.config/nvim 目录
+        os.system('mkdir -p ~/.config/nvim')
+        vimrc_path = os.path.join(os.path.expanduser('~'), '.config/nvim/init.vim')
+    else:
+        os.system('mkdir -p ~/AppData/Local/nvim')
+        vimrc_path = os.path.join(os.path.expanduser('~'), 'AppData/Local/nvim/init.vim')
+    os.system(f'cp {os.path.join(os.path.dirname(os.path.abspath(__file__)), "init.vim")} {vimrc_path}')
     os.system('nvim +PlugInstall +qall')
 
 
